@@ -208,7 +208,7 @@
                         <!-- 搜索输入 -->
                         <input type="text" 
                                id="searchInput" 
-                               class="flex-1 bg-[#111] border-y border-[#333] text-white px-6 py-0 focus:outline-none transition-colors" 
+                               class="flex-1 bg-[#111] border-y border-[#333] text-white px-6 py-0 focus:outline-none transition-colors min-w-0" 
                                placeholder="搜索你喜欢的视频..." 
                                autocomplete="off"
                                aria-label="视频搜索框"
@@ -342,7 +342,10 @@
                 <form id="passwordForm" onsubmit="handlePasswordSubmit(); return false;">
                     <input type="text" name="username" id="username" autocomplete="username" style="display:none" tabindex="-1" aria-hidden="true">
                     <input type="password" id="passwordInput" class="w-full bg-[#111] border border-[#333] text-white px-4 py-3 rounded-lg focus:outline-none focus:border-white transition-colors" placeholder="密码..." autocomplete="new-password">
-                    <button id="passwordSubmitBtn" type="submit" class="mt-4 w-full bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded">提交</button>
+                    <div class="mt-4 w-full flex space-x-4">
+                        <button id="passwordSubmitBtn" type="submit" class="flex-1 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded">提交</button>
+                        <button id="passwordCancelBtn" type="button" onclick="hidePasswordModal()" class="flex-1 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded">取消</button>
+                    </div>
                 </form>
                 <p id="passwordError" class="text-red-500 mt-2 hidden">密码错误，请重试</p>
             </div>
@@ -411,6 +414,8 @@
         window._jsSha256 = window.sha256;
     </script>
     <script src="js/config.js"></script>
+    <script src="js/proxy-auth.js"></script>
+    <script src="js/customer_site.js"></script>
     <script src="js/ui.js"></script>
     <script src="js/api.js"></script>
     <script src="js/douban.js"></script>
@@ -429,7 +434,6 @@
         // 注入服务器端环境变量 (将由服务器端替换)
         // PASSWORD 变量将在这里被服务器端注入
         window.__ENV__.PASSWORD = "{{PASSWORD}}";
-        window.__ENV__.ADMINPASSWORD = "{{ADMINPASSWORD}}";
     </script>
 
     <!-- 版本检测脚本 -->
